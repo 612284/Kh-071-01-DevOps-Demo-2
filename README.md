@@ -1,6 +1,6 @@
 # It is a simple AWS VPC, built by Terraform.
 
-### it contains:
+### project contains:
 
 - 2 public subnets
 - 2 private subnets
@@ -12,7 +12,8 @@
 
 ![](readme_img/scheme1.png)
 
-security group
+
+### security group
 
 ![](readme_img/scheme2.png)
 
