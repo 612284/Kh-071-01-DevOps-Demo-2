@@ -10,7 +10,11 @@
 - Autoscaling group
 - Bastion host
 
-![](readme_img/scheme.png)
+![](readme_img/scheme1.png)
+
+security group
+
+![](readme_img/scheme2.png)
 
 ### for run you need:
 
