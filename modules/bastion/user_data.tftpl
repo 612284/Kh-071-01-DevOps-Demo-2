@@ -1,0 +1,6 @@
+#!/bin/bash
+cat <<EOF>/home/ubuntu/.ssh/id_rsa
+${private_key_pem}
+EOF
+chmod 400 /home/ubuntu/.ssh/id_rsa
+chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa

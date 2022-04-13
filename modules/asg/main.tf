@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "ubuntu-ec2" {
   target_group_arns = [var.target_group_arns]
   health_check_type = "ELB"
 
-  min_size         = 1
+  min_size         = 2
   max_size         = 2
   desired_capacity = 2
 
@@ -21,16 +21,8 @@ resource "aws_launch_configuration" "ubuntu-ec2" {
   instance_type   = var.instance_type
   key_name        = var.generated_key_name
   security_groups = [aws_security_group.instance.id]
-  user_data       = <<EOF
-#!/bin/bash
-sudo apt -y update
-sudo apt install  -y apache2
-myip=`curl http://169.254.169.254/latest/meta-data/local-ipv4`
-sudo chmod 777 /var/www/html/index.html
-echo "<h2>WebServer with IP: $myip</h2><br>Build by Terraform!" > /var/www/html/index.html
-sudo chmod 755 /var/www/html/index.html
-sudo systemctl restart apache2
-EOF
+  user_data       = file("modules/asg/user_data.sh")
+
   # Required when using launch configuration with auto scaling group.
   # https://www.terraform.io/docs/providers/aws/r/launch_configuration.html
   lifecycle {
